@@ -1,10 +1,19 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { TwitterIcon, GithubIcon, LinkedInIcon, PinterestIcon, DribbbleIcon, SunIcon, MoonIcon } from './Icons';
+import { TwitterIcon, GithubIcon, LinkedInIcon, PinterestIcon, SunIcon, MoonIcon } from './Icons';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import useThemeSwitcher from './hooks/useThemeSwitcher';
 import { useState } from 'react';
+
+// Centralize social handle/URLs so they can be changed in one place
+const GTS_HANDLE = 'gtsalpha';
+const SOCIAL = {
+  twitter: `https://twitter.com/${GTS_HANDLE}`,
+  github: `https://github.com/${GTS_HANDLE}`,
+  linkedin: `https://linkedin.com/in/${GTS_HANDLE}`,
+  pinterest: `https://pinterest.com/${GTS_HANDLE}`,
+};
 
 const CustomLink = ({ href, title, className = '' }) => {
   const router = useRouter();
@@ -128,7 +137,7 @@ const NavBar = () => {
       {/* Desktop Social Icons */}
       <nav className="flex items-center justify-center flex-wrap lg:hidden">
         <motion.a
-          href="https://twitter.com/gtsalpha"
+          href={SOCIAL.twitter}
           target="_blank"
           whileHover={{ y: -2 }}
           whileTap={{ scale: 0.9 }}
@@ -137,7 +146,7 @@ const NavBar = () => {
           <TwitterIcon className="fill-[#1DA1F2]" />
         </motion.a>
         <motion.a
-          href="https://github.com/gtsalpha"
+          href={SOCIAL.github}
           target="_blank"
           whileHover={{ y: -2 }}
           whileTap={{ scale: 0.9 }}
@@ -146,7 +155,7 @@ const NavBar = () => {
           <GithubIcon />
         </motion.a>
         <motion.a
-          href="https://linkedin.com/in/gtsalpha"
+          href={SOCIAL.linkedin}
           target="_blank"
           whileHover={{ y: -2 }}
           whileTap={{ scale: 0.9 }}
@@ -155,7 +164,7 @@ const NavBar = () => {
           <LinkedInIcon />
         </motion.a>
         <motion.a
-          href="https://pinterest.com/gtsalpha"
+          href={SOCIAL.pinterest}
           target="_blank"
           whileHover={{ y: -2 }}
           whileTap={{ scale: 0.9 }}
@@ -163,15 +172,7 @@ const NavBar = () => {
         >
           <PinterestIcon className="fill-[#E60023] bg-white rounded-full" />
         </motion.a>
-        <motion.a
-          href="https://dribbble.com/gtsalpha"
-          target="_blank"
-          whileHover={{ y: -2 }}
-          whileTap={{ scale: 0.9 }}
-          className="w-6 ml-3"
-        >
-          <DribbbleIcon className="fill-[#EA4C89]" />
-        </motion.a>
+        {/* Dribbble removed per request */}
 
         <button
           onClick={() => setMode(mode === 'light' ? 'dark' : 'light')}
@@ -201,7 +202,7 @@ const NavBar = () => {
 
           <nav className="flex items-center justify-center flex-wrap mt-2">
             <motion.a
-              href="https://twitter.com/gtsalpha"
+              href={SOCIAL.twitter}
               target="_blank"
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.9 }}
@@ -210,7 +211,7 @@ const NavBar = () => {
               <TwitterIcon className="fill-[#1DA1F2]" />
             </motion.a>
             <motion.a
-              href="https://github.com/gtsalpha"
+              href={SOCIAL.github}
               target="_blank"
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.9 }}
@@ -219,7 +220,7 @@ const NavBar = () => {
               <GithubIcon />
             </motion.a>
             <motion.a
-              href="https://linkedin.com/in/gtsalpha"
+              href={SOCIAL.linkedin}
               target="_blank"
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.9 }}
@@ -228,7 +229,7 @@ const NavBar = () => {
               <LinkedInIcon />
             </motion.a>
             <motion.a
-              href="https://pinterest.com/gtsalpha"
+              href={SOCIAL.pinterest}
               target="_blank"
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.9 }}
@@ -236,15 +237,7 @@ const NavBar = () => {
             >
               <PinterestIcon className="fill-[#E60023] bg-white rounded-full" />
             </motion.a>
-            <motion.a
-              href="https://dribbble.com/gtsalpha"
-              target="_blank"
-              whileHover={{ y: -2 }}
-              whileTap={{ scale: 0.9 }}
-              className="w-6 ml-3 sm:mx-1"
-            >
-              <DribbbleIcon className="fill-[#EA4C89]" />
-            </motion.a>
+            {/* Dribbble removed per request */}
 
             <button
               onClick={() => setMode(mode === 'light' ? 'dark' : 'light')}

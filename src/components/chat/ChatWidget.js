@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const ChatWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState({
-    type: 'tip', // tip (แจ้งเบาะแส) or complaint (ร้องเรียน)
+    type: 'tip',
     name: '',
     phone: '',
     email: '',
@@ -15,7 +16,7 @@ const ChatWidget = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // TODO: ส่งข้อมูลไปยัง API
+    // Placeholder: send data to API
     alert('ข้อมูลของท่านถูกส่งแล้ว\nเราจะเก็บรักษาความลับของท่านอย่างเคร่งครัด');
     setIsOpen(false);
     setFormData({
@@ -34,8 +35,9 @@ const ChatWidget = () => {
       {/* Floating Button */}
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        aria-label="Open chat"
         className="fixed bottom-8 right-8 z-50 w-16 h-16 bg-gradient-to-br from-primary to-primaryDark text-light rounded-full shadow-2xl flex items-center justify-center text-2xl hover:shadow-primary/50 transition-shadow"
       >
         {isOpen ? '✕' : '💬'}
@@ -45,29 +47,27 @@ const ChatWidget = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: 100, scale: 0.8 }}
+            initial={{ opacity: 0, y: 80, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 100, scale: 0.8 }}
-            transition={{ duration: 0.3 }}
+            exit={{ opacity: 0, y: 80, scale: 0.95 }}
+            transition={{ duration: 0.25 }}
             className="fixed bottom-28 right-8 z-40 w-96 max-w-[calc(100vw-4rem)] bg-light dark:bg-dark border-2 border-dark dark:border-light rounded-2xl shadow-2xl overflow-hidden md:w-80 sm:w-72"
           >
             {/* Header */}
-            <div className="bg-gradient-to-r from-primary to-primaryDark p-4 text-light">
-              <h3 className="text-lg font-bold mb-1">
-                🚨 แจ้งเบาะแส / ร้องเรียน
-              </h3>
-              <p className="text-xs opacity-90">
-                เราเก็บรักษาความลับของท่านอย่างเคร่งครัด
-              </p>
+            <div className="flex items-center gap-3 bg-gradient-to-r from-primary to-primaryDark p-4 text-light">
+              <div className="w-10 h-10 relative flex-shrink-0">
+                 <Image src="/images/chat-bo.svg" alt="chat" fill className="object-contain rounded-md" />
+              </div>
+              <div>
+                <h3 className="text-lg font-bold mb-0">🚨 แจ้งเบาะแส / ร้องเรียน</h3>
+                <p className="text-xs opacity-90">เราเก็บรักษาความลับของท่านอย่างเคร่งครัด</p>
+              </div>
             </div>
 
             {/* Form */}
             <form onSubmit={handleSubmit} className="p-4 max-h-[500px] overflow-y-auto">
-              {/* Type Selection */}
               <div className="mb-4">
-                <label className="block text-sm font-semibold mb-2 text-dark dark:text-light">
-                  ประเภท
-                </label>
+                <label className="block text-sm font-semibold mb-2 text-dark dark:text-light">ประเภท</label>
                 <div className="flex gap-2">
                   <button
                     type="button"
@@ -94,86 +94,61 @@ const ChatWidget = () => {
                 </div>
               </div>
 
-              {/* Anonymous Checkbox */}
               <div className="mb-4">
                 <label className="flex items-center gap-2 cursor-pointer">
                   <input
                     type="checkbox"
                     checked={formData.anonymous}
-                    onChange={(e) =>
-                      setFormData({ ...formData, anonymous: e.target.checked })
-                    }
+                    onChange={(e) => setFormData({ ...formData, anonymous: e.target.checked })}
                     className="w-4 h-4"
                   />
-                  <span className="text-sm text-dark dark:text-light">
-                    ✓ ไม่ต้องการเปิดเผยชื่อ (ไม่ระบุตัวตน)
-                  </span>
+                  <span className="text-sm text-dark dark:text-light">✓ ไม่ต้องการเปิดเผยชื่อ (ไม่ระบุตัวตน)</span>
                 </label>
               </div>
 
-              {/* Name */}
               {!formData.anonymous && (
                 <div className="mb-4">
-                  <label className="block text-sm font-semibold mb-2 text-dark dark:text-light">
-                    ชื่อ-นามสกุล
-                  </label>
+                  <label className="block text-sm font-semibold mb-2 text-dark dark:text-light">ชื่อ-นามสกุล</label>
                   <input
                     type="text"
                     value={formData.name}
-                    onChange={(e) =>
-                      setFormData({ ...formData, name: e.target.value })
-                    }
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     className="w-full p-2 border-2 border-dark/20 dark:border-light/20 rounded-lg bg-light dark:bg-dark text-dark dark:text-light focus:border-primary dark:focus:border-primaryDark outline-none"
                     placeholder="ระบุชื่อของท่าน"
                   />
                 </div>
               )}
 
-              {/* Phone */}
               {!formData.anonymous && (
                 <div className="mb-4">
-                  <label className="block text-sm font-semibold mb-2 text-dark dark:text-light">
-                    เบอร์โทรศัพท์
-                  </label>
+                  <label className="block text-sm font-semibold mb-2 text-dark dark:text-light">เบอร์โทรศัพท์</label>
                   <input
                     type="tel"
                     value={formData.phone}
-                    onChange={(e) =>
-                      setFormData({ ...formData, phone: e.target.value })
-                    }
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     className="w-full p-2 border-2 border-dark/20 dark:border-light/20 rounded-lg bg-light dark:bg-dark text-dark dark:text-light focus:border-primary dark:focus:border-primaryDark outline-none"
                     placeholder="08x-xxx-xxxx"
                   />
                 </div>
               )}
 
-              {/* Location */}
               <div className="mb-4">
-                <label className="block text-sm font-semibold mb-2 text-dark dark:text-light">
-                  สถานที่เกิดเหตุ
-                </label>
+                <label className="block text-sm font-semibold mb-2 text-dark dark:text-light">สถานที่เกิดเหตุ</label>
                 <input
                   type="text"
                   value={formData.location}
-                  onChange={(e) =>
-                    setFormData({ ...formData, location: e.target.value })
-                  }
+                  onChange={(e) => setFormData({ ...formData, location: e.target.value })}
                   className="w-full p-2 border-2 border-dark/20 dark:border-light/20 rounded-lg bg-light dark:bg-dark text-dark dark:text-light focus:border-primary dark:focus:border-primaryDark outline-none"
                   placeholder="จังหวัด, อำเภอ, ตำบล"
                   required
                 />
               </div>
 
-              {/* Message */}
               <div className="mb-4">
-                <label className="block text-sm font-semibold mb-2 text-dark dark:text-light">
-                  รายละเอียด
-                </label>
+                <label className="block text-sm font-semibold mb-2 text-dark dark:text-light">รายละเอียด</label>
                 <textarea
                   value={formData.message}
-                  onChange={(e) =>
-                    setFormData({ ...formData, message: e.target.value })
-                  }
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   rows={4}
                   className="w-full p-2 border-2 border-dark/20 dark:border-light/20 rounded-lg bg-light dark:bg-dark text-dark dark:text-light focus:border-primary dark:focus:border-primaryDark outline-none resize-none"
                   placeholder="กรุณาระบุรายละเอียดให้มากที่สุด..."
@@ -181,28 +156,16 @@ const ChatWidget = () => {
                 />
               </div>
 
-              {/* Info Box */}
               <div className="mb-4 p-3 bg-primary/10 dark:bg-primaryDark/10 rounded-lg border-l-4 border-primary dark:border-primaryDark">
                 <p className="text-xs text-dark dark:text-light leading-relaxed">
-                  ℹ️ <span className="font-semibold">คำสัญญา:</span>{' '}
-                  เราจะเก็บรักษาข้อมูลของท่านเป็นความลับ
-                  และนำไปใช้เพื่อการปฏิบัติการเท่านั้น
+                  ℹ️ <span className="font-semibold">คำสัญญา:</span> เราจะเก็บรักษาข้อมูลของท่านเป็นความลับ และนำไปใช้เพื่อการปฏิบัติการเท่านั้น
                 </p>
               </div>
 
-              {/* Submit Button */}
-              <button
-                type="submit"
-                className="w-full py-3 bg-gradient-to-r from-primary to-primaryDark text-light font-bold rounded-lg hover:shadow-lg transition-shadow"
-              >
-                ส่งข้อมูล
-              </button>
+              <button type="submit" className="w-full py-3 bg-gradient-to-r from-primary to-primaryDark text-light font-bold rounded-lg hover:shadow-lg transition-shadow">ส่งข้อมูล</button>
             </form>
 
-            {/* Footer */}
-            <div className="p-3 bg-dark/5 dark:bg-light/5 text-center text-xs text-dark/60 dark:text-light/60">
-              ตอบกลับภายใน 24-48 ชั่วโมง
-            </div>
+            <div className="p-3 bg-dark/5 dark:bg-light/5 text-center text-xs text-dark/60 dark:text-light/60">ตอบกลับภายใน 24-48 ชั่วโมง</div>
           </motion.div>
         )}
       </AnimatePresence>
