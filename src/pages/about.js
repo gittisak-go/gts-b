@@ -92,7 +92,7 @@ const About = () => {
                         </div>
                       </div>
                       <p className="text-base sm:text-sm leading-relaxed">
-                        ในบทบาท <strong className="text-primary dark:text-primaryDark">พ.ต.ต. กิจติศักดิ์ วรรณคีรี</strong> หัวหน้านายปราบปรามเมืองเอก กองกำกับการ 1 บก.ปส.3 ผมมีส่วนร่วมในปฏิบัติการ (วันที่ 1-7 มิ.ย. 2565) ซึ่งเป็นการขยายผลจากการวิเคราะห์ฐานข้อมูลจากระบบ <strong className="text-primary dark:text-primaryDark">Big Data</strong> เพื่อนำไปสู่การปิดล้อมจับกุมเครือข่ายยาเสพติดรายใหญ่ใน 10 จังหวัด
+                        ในบทบาท <strong className="text-primary dark:text-primaryDark">พ.ต.ท. กิจติศักดิ์ วรรณคีรี</strong> หัวหน้านายปราบปรามเมืองเอก กองกำกับการ 1 บก.ปส.3 ผมมีส่วนร่วมในปฏิบัติการ (วันที่ 1-7 มิ.ย. 2565) ซึ่งเป็นการขยายผลจากการวิเคราะห์ฐานข้อมูลจากระบบ <strong className="text-primary dark:text-primaryDark">Big Data</strong> เพื่อนำไปสู่การปิดล้อมจับกุมเครือข่ายยาเสพติดรายใหญ่ใน 10 จังหวัด
                       </p>
                     </div>
 
@@ -155,7 +155,7 @@ const About = () => {
                   <div className="absolute top-0 -right-3 -z-10 w-[102%] h-[103%] rounded-[2rem] bg-dark dark:bg-light" />
                   <Image
                     src={profilePic}
-                    alt="พ.ต.ต. กิจติศักดิ์ วรรณคีรี"
+                    alt="พ.ต.ท. กิจติศักดิ์ วรรณคีรี"
                     className="w-full h-auto rounded-2xl"
                     priority
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 35vw, 20vw"

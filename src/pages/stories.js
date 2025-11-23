@@ -78,7 +78,7 @@ const Stories = () => {
   return (
     <>
       <Head>
-        <title>เรื่องราว & งานเขียน | พ.ต.ต. กิจติศักดิ์ วรรณคีรี</title>
+        <title>เรื่องราว & งานเขียน | พ.ต.ท. กิจติศักดิ์ วรรณคีรี</title>
         <meta
           name="description"
           content="สรุปผลงานและเรื่องราวสำคัญรอบ 10-20 ปีในการทำงาน การมีส่วนร่วม และความร่วมมือ"
@@ -219,7 +219,7 @@ const Stories = () => {
               </p>
               <div className="mt-6 text-right">
                 <p className="font-semibold text-xl">
-                  - พ.ต.ต. กิจติศักดิ์ วรรณคีรี
+                  - พ.ต.ท. กิจติศักดิ์ วรรณคีรี
                 </p>
                 <p className="text-sm opacity-80">
                   หัวหน้านายปราบปรามเมืองเอก กก.1 บก.ปส.3
