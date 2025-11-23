@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { TwitterIcon, GithubIcon, LinkedInIcon, PinterestIcon, DribbbleIcon, SunIcon, MoonIcon } from './Icons';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import useThemeSwitcher from './hooks/useThemeSwitcher';
 import { useState } from 'react';
 
@@ -259,10 +260,13 @@ const NavBar = () => {
 
       <div className="absolute left-[50%] top-2 translate-x-[-50%]">
         <Link href="/" className="flex items-center justify-center hover:opacity-80 transition-opacity">
-          <img 
-            src="https://upload.wikimedia.org/wikipedia/commons/7/70/Narcotics_Suppression_Bureau_Logo.png" 
-            alt="กองบัญชาการตำรวจปราบปรามยาเสพติด" 
+          <Image
+            src="https://upload.wikimedia.org/wikipedia/commons/7/70/Narcotics_Suppression_Bureau_Logo.png"
+            alt="กองบัญชาการตำรวจปราบปรามยาเสพติด"
+            width={64}
+            height={64}
             className="w-16 h-16 md:w-12 md:h-12 object-contain"
+            unoptimized
           />
         </Link>
       </div>

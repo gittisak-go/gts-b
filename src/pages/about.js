@@ -77,10 +77,13 @@ const About = () => {
                     <div className="space-y-3">
                       <div className="flex items-center gap-3 mb-4 p-3 bg-white dark:bg-dark/80 rounded-lg border border-dark/10 dark:border-light/10">
                         <div className="w-12 h-12 flex-shrink-0 bg-white rounded-full p-1 border-2 border-primary dark:border-primaryDark">
-                          <img 
-                            src="https://upload.wikimedia.org/wikipedia/commons/7/70/Narcotics_Suppression_Bureau_Logo.png" 
-                            alt="กองบัญชาการตำรวจปราบปรามยาเสพติด" 
+                          <Image
+                            src="https://upload.wikimedia.org/wikipedia/commons/7/70/Narcotics_Suppression_Bureau_Logo.png"
+                            alt="กองบัญชาการตำรวจปราบปรามยาเสพติด"
+                            width={48}
+                            height={48}
                             className="w-full h-full object-contain"
+                            unoptimized
                           />
                         </div>
                         <div>
