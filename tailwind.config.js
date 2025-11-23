@@ -16,6 +16,12 @@ module.exports = {
       },
       animation: {
         'spin-slow': 'spin 8s linear infinite',
+        'spin-reverse-slow': 'spin-reverse 8s linear infinite',
+      },
+      keyframes: {
+        'spin-reverse': {
+          'to': { transform: 'rotate(-360deg)' },
+        },
       },
       backgroundImage: {
         circularLight:

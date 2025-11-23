@@ -6,6 +6,7 @@ import AnimatedText from '@/components/AnimatedText';
 import HireMe from '@/components/HireMe';
 import profilePic from '../../public/images/profile/developer-pic-1.png';
 import lightBulb from '../../public/images/svgs/miscellaneous_icons_1.svg';
+import { LinkArrow } from '@/components/Icons';
 
 export default function Home() {
   return (
@@ -42,23 +43,14 @@ export default function Home() {
                   ผมใช้แนวคิดเชิงนวัตกรรมและการสร้างประสบการณ์ที่เน้นผู้ใช้เป็นศูนย์กลาง (Citizen-Centric) เพื่อค้นหาวิธีการใหม่ๆ ในการยกระดับวิสัยทัศน์แห่งการบริการให้มีประสิทธิภาพสูงสุด
                 </p>
                 <div className="flex items-center self-start mt-2 lg:self-center">
-                  <a
-                    href="/resume.pdf"
-                    download={true}
-                    className="flex items-center bg-dark text-light p-2.5 px-6 rounded-lg text-lg font-semibold hover:bg-light hover:text-dark border-2 border-solid border-transparent hover:border-dark dark:bg-light dark:text-dark hover:dark:bg-dark hover:dark:text-light hover:dark:border-light md:p-2 md:px-4 md:text-base transition-all duration-300"
-                  >
-                    ดาวน์โหลด Resume
-                    <svg className="w-6 ml-1" viewBox="0 0 24 24">
-                      <path
-                        fill="none"
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M11 7H6a2 2 0 00-2 2v9a2 2 0 002 2h9a2 2 0 002-2v-5m-7 1L20 4m-5 0h5v5"
-                      />
-                    </svg>
-                  </a>
+                                  <Link
+                  href="/WarrantDashboardDesign.pdf"
+                  target={'_blank'}
+                  className="flex items-center bg-dark text-light p-2.5 px-6 rounded-lg text-lg font-semibold hover:bg-light hover:text-dark border-2 border-solid border-transparent hover:border-dark dark:bg-light dark:text-dark hover:dark:bg-dark hover:dark:text-light hover:dark:border-light md:p-2 md:px-4 md:text-base"
+                  download={true}
+                >
+                  ดาวน์โหลด Resume <LinkArrow className={'w-6 ml-1'} />
+                </Link>
                   <a
                     href="mailto:gtsalpha@example.com"
                     className="ml-4 text-lg font-medium text-dark underline hover:text-primary dark:text-light dark:hover:text-primaryDark md:text-base transition-colors duration-300"

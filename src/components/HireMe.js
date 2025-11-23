@@ -12,7 +12,7 @@ const HireMe = () => {
           alt="Hire me"
           width={192}
           height={192}
-          className="fill-dark animate-spin-slow dark:fill-light"
+          className="fill-dark animate-spin-reverse-slow dark:fill-light"
         />
         <a
           href="mailto:your-email@example.com"

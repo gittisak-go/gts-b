@@ -9,10 +9,10 @@ import { useState } from 'react';
 // Centralize social handle/URLs so they can be changed in one place
 const GTS_HANDLE = 'gtsalpha';
 const SOCIAL = {
-  twitter: `https://twitter.com/${GTS_HANDLE}`,
-  github: `https://github.com/${GTS_HANDLE}`,
-  linkedin: `https://linkedin.com/in/${GTS_HANDLE}`,
-  pinterest: `https://pinterest.com/${GTS_HANDLE}`,
+  twitter: '#',
+  github: '#',
+  linkedin: '#',
+  pinterest: '#',
 };
 
 const CustomLink = ({ href, title, className = '' }) => {
@@ -143,7 +143,7 @@ const NavBar = () => {
           whileTap={{ scale: 0.9 }}
           className="w-6 mr-3"
         >
-          <TwitterIcon className="fill-[#1DA1F2]" />
+          <TwitterIcon />
         </motion.a>
         <motion.a
           href={SOCIAL.github}
@@ -170,7 +170,7 @@ const NavBar = () => {
           whileTap={{ scale: 0.9 }}
           className="w-6 mx-3"
         >
-          <PinterestIcon className="fill-[#E60023] bg-white rounded-full" />
+          <PinterestIcon />
         </motion.a>
         {/* Dribbble removed per request */}
 
@@ -208,7 +208,7 @@ const NavBar = () => {
               whileTap={{ scale: 0.9 }}
               className="w-6 mr-3 sm:mx-1"
             >
-              <TwitterIcon className="fill-[#1DA1F2]" />
+              <TwitterIcon />
             </motion.a>
             <motion.a
               href={SOCIAL.github}
@@ -235,7 +235,7 @@ const NavBar = () => {
               whileTap={{ scale: 0.9 }}
               className="w-6 mx-3 sm:mx-1"
             >
-              <PinterestIcon className="fill-[#E60023] bg-white rounded-full" />
+              <PinterestIcon />
             </motion.a>
             {/* Dribbble removed per request */}
 

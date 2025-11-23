@@ -5,8 +5,8 @@ export default function Document() {
     <Html lang="th">
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" href="/favicon.ico" />
+        <link rel="icon" href="/images/logo/favicon.png" />
+        <link rel="apple-touch-icon" href="/images/logo/favicon.png" />
         <meta name="msapplication-TileColor" content="#ffffff" />
         <meta name="theme-color" content="#ffffff" />
       </Head>
