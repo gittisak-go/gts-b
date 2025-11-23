@@ -13,39 +13,7 @@ const ChatWidget = () => {
   const [isCalling, setIsCalling] = useState(false);
   const [showStickers, setShowStickers] = useState(false);
   const bottomRef = useRef(null);
-
-  // Chat name and running counters (user requested numbers to run up)
   const chatName = 'Gts';
-  const [displayedCash, setDisplayedCash] = useState(50000000); // 50,000,000
-  const [displayedSeized, setDisplayedSeized] = useState(300000000); // 300,000,000
-  const cashTargetRef = useRef(displayedCash);
-  const seizedTargetRef = useRef(displayedSeized);
-
-  const fmt = (n) => new Intl.NumberFormat('th-TH').format(n);
-
-  useEffect(() => {
-    // periodically increase the targets and step displayed numbers towards them
-    const incInterval = setInterval(() => {
-      cashTargetRef.current += Math.floor(Math.random() * 200000 + 100000); // increase by 100k-300k
-      seizedTargetRef.current += Math.floor(Math.random() * 500000 + 200000); // increase by 200k-700k
-
-      // step displayed values toward targets for smooth-ish animation
-      setDisplayedCash((prev) => {
-        const diff = cashTargetRef.current - prev;
-        if (diff <= 0) return prev;
-        const delta = Math.max(10000, Math.ceil(diff * 0.14));
-        return prev + delta;
-      });
-      setDisplayedSeized((prev) => {
-        const diff = seizedTargetRef.current - prev;
-        if (diff <= 0) return prev;
-        const delta = Math.max(20000, Math.ceil(diff * 0.12));
-        return prev + delta;
-      });
-    }, 1400);
-
-    return () => clearInterval(incInterval);
-  }, []);
 
   useEffect(() => {
     if (isOpen && bottomRef.current) {
@@ -129,10 +97,7 @@ const ChatWidget = () => {
                 </div>
                 <div>
                   <div className="font-semibold">{chatName}</div>
-                  <div className="text-xs opacity-90">
-                    <span className="mr-2">{fmt(displayedCash)} บาท</span>
-                    <span>ทรัพย์สินอายัด {fmt(displayedSeized)}+ บาท</span>
-                  </div>
+                  <div className="text-xs opacity-90">พร้อมคุยทุกเรื่อง</div>
                 </div>
               </div>
               <div className="flex items-center gap-2">
