@@ -1,5 +1,5 @@
 {
-  "name": "developer-portfolio-starter-code",
+  "name": "gtsalpha",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@mlc-ai/web-llm": "^0.2.79",
+    "@supabase/supabase-js": "^2.84.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "embla-carousel-react": "^8.6.0",

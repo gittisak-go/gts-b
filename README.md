@@ -1,4 +1,263 @@
-# 🚔 Portfolio Website - พ.ต.ต. กิจติศักดิ์ วรรณคีรี
+# GTS Alpha - AI-Powered Portfolio
+
+Portfolio website ที่รวม AI Chat (Cloud + Local) พร้อมระบบ Authentication และ Knowledge Base
+
+---
+
+## 🛠️ Tech Stack
+
+| Category       | Technology             | Version | Purpose                           |
+| -------------- | ---------------------- | ------- | --------------------------------- |
+| **Framework**  | Next.js                | 14.2.10 | React Framework with SSR/SSG      |
+| **UI Library** | React                  | 18.2.0  | Component-based UI                |
+| **Styling**    | Tailwind CSS           | 3.4.18  | Utility-first CSS                 |
+| **Animation**  | Framer Motion          | 10.6.0  | Smooth transitions & effects      |
+| **Backend**    | Supabase               | 2.84.0  | Authentication, Database, Storage |
+| **Cloud AI**   | Google Gemini / OpenAI | -       | Cloud-based LLM API               |
+| **Local AI**   | @mlc-ai/web-llm        | 0.2.79  | Browser-based AI (WebGPU)         |
+| **Icons**      | Lucide React           | 0.554.0 | Icon library                      |
+| **Carousel**   | Embla Carousel         | 8.6.0   | Touch-friendly carousel           |
+
+---
+
+## 📦 การติดตั้ง (Installation)
+
+### ข้อกำหนดระบบ (Prerequisites)
+
+```bash
+# ต้องติดตั้ง Node.js เวอร์ชัน 18 หรือสูงกว่า
+node --version  # v18.x.x หรือสูงกว่า
+npm --version   # v9.x.x หรือสูงกว่า
+```
+
+### ขั้นตอนการติดตั้ง
+
+```bash
+# 1. Clone repository
+git clone https://github.com/gittisak-go/gts-b.git
+cd gts-b
+
+# 2. ติดตั้ง dependencies
+npm install
+
+# 3. สร้างไฟล์ .env.local (สำหรับ Supabase & AI API Keys)
+cp .env.example .env.local
+
+# 4. แก้ไข .env.local ใส่ API Keys ของคุณ
+# NEXT_PUBLIC_SUPABASE_URL=your-supabase-url
+# NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
+# NEXT_PUBLIC_GEMINI_API_KEY=your-gemini-api-key (Optional)
+# NEXT_PUBLIC_OPENAI_API_KEY=your-openai-api-key (Optional)
+
+# 5. รัน Development Server
+npm run dev
+```
+
+เปิดเบราว์เซอร์ที่ **http://localhost:3000**
+
+---
+
+## 🤖 Local AI Models
+
+### การทำงานของ Local AI
+
+- โมเดลจะ **ดาวน์โหลดอัตโนมัติ** เมื่อผู้ใช้เลือกใช้ Local AI ครั้งแรก
+- ดาวน์โหลดจาก **Hugging Face** และเก็บใน **Browser Cache (IndexedDB)**
+- **ไม่ต้องดาวน์โหลดซ้ำ** ครั้งต่อไป (เว้นแต่ล้าง Cache)
+- ทำงานผ่าน **WebGPU** (ต้องการ GPU ที่รองรับ)
+
+### ขนาดโมเดล
+
+| Model              | ขนาด   | ความเร็ว | ความแม่นยำ |
+| ------------------ | ------ | -------- | ---------- |
+| **TinyLlama 1.1B** | ~600MB | เร็วมาก  | ปานกลาง    |
+| **Gemma 2B**       | ~1.4GB | เร็ว     | ดี         |
+| **Phi-3 Mini**     | ~2.3GB | ปานกลาง  | ดีมาก      |
+
+### ข้อกำหนดสำหรับ Local AI
+
+- **Browser**: Chrome 113+, Edge 113+ (รองรับ WebGPU)
+- **GPU**: GPU ที่รองรับ WebGPU (NVIDIA, AMD, หรือ Intel integrated)
+- **RAM**: อย่างน้อย 4GB สำหรับ TinyLlama, 8GB+ สำหรับ Gemma/Phi-3
+
+### การตรวจสอบว่า Browser รองรับ WebGPU
+
+เปิด Console (F12) แล้วพิมพ์:
+
+```javascript
+navigator.gpu ? "✅ รองรับ WebGPU" : "❌ ไม่รองรับ";
+```
+
+---
+
+## 🚀 Deployment
+
+### Option 1: Vercel (แนะนำ)
+
+```bash
+# ติดตั้ง Vercel CLI
+npm i -g vercel
+
+# Login
+vercel login
+
+# Deploy
+vercel
+
+# Deploy Production
+vercel --prod
+```
+
+**Environment Variables ที่ต้องตั้งค่าใน Vercel:**
+
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+- `NEXT_PUBLIC_GEMINI_API_KEY` (Optional)
+- `NEXT_PUBLIC_OPENAI_API_KEY` (Optional)
+
+### Option 2: GitHub Pages (Static Export)
+
+```bash
+# 1. เพิ่ม config ใน next.config.js
+output: 'export',
+basePath: '/gts-b',
+images: { unoptimized: true }
+
+# 2. Build
+npm run build
+
+# 3. Push โฟลเดอร์ out/ ไปยัง gh-pages branch
+# (หรือใช้ GitHub Actions - ดูตัวอย่างด้านล่าง)
+```
+
+### GitHub Actions (Auto Deploy)
+
+สร้างไฟล์ `.github/workflows/deploy.yml`:
+
+```yaml
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+      - run: npm ci
+      - run: npm run build
+      - uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out
+```
+
+---
+
+## 📁 โครงสร้างโปรเจกต์
+
+```
+gts-b/
+├── public/
+│   ├── images/              # รูปภาพทั้งหมด
+│   └── documents/           # เอกสาร Knowledge Base (PDF, TXT)
+├── src/
+│   ├── components/
+│   │   ├── chat/
+│   │   │   └── ChatWidget.js       # AI Chat Widget
+│   │   ├── admin/
+│   │   │   └── Dashboard.js        # Admin Settings
+│   │   └── auth/
+│   │       └── LoginModal.js       # Login/Register Modal
+│   ├── pages/
+│   │   ├── index.js                # หน้าแรก
+│   │   ├── admin/
+│   │   │   └── dashboard.js        # Admin Dashboard
+│   │   ├── legal/
+│   │   │   ├── privacy-policy.js   # นโยบายความเป็นส่วนตัว
+│   │   │   └── terms-of-service.js # ข้อตกลงการใช้งาน
+│   │   └── _app.js
+│   ├── utils/
+│   │   ├── supabase.js             # Supabase Client
+│   │   ├── chatService.js          # Cloud AI Service
+│   │   └── localLLMService.js      # Local AI Service (WebLLM)
+│   └── styles/
+│       └── globals.css
+├── .env.local                       # Environment Variables (ไม่ commit)
+├── .env.example                     # ตัวอย่าง Environment Variables
+├── next.config.js
+├── package.json
+└── README.md
+```
+
+---
+
+## 🔧 Scripts
+
+```bash
+npm run dev      # รัน Development Server (localhost:3000)
+npm run build    # Build สำหรับ Production
+npm run start    # รัน Production Server (หลัง build)
+npm run lint     # ตรวจสอบ Code Style
+```
+
+---
+
+## ⚙️ การตั้งค่า Environment Variables
+
+สร้างไฟล์ `.env.local` ที่ root ของโปรเจกต์:
+
+```bash
+# Supabase (จำเป็น)
+NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+
+# Cloud AI (เลือก 1 หรือทั้ง 2)
+NEXT_PUBLIC_GEMINI_API_KEY=your-gemini-api-key
+NEXT_PUBLIC_OPENAI_API_KEY=your-openai-api-key
+```
+
+### วิธีการหา API Keys:
+
+1. **Supabase**: https://supabase.com → สร้างโปรเจกต์ → Settings → API
+2. **Google Gemini**: https://makersuite.google.com/app/apikey
+3. **OpenAI**: https://platform.openai.com/api-keys
+
+---
+
+## 🌐 สถานะการ Deploy
+
+- **GitHub Repository**: ✅ https://github.com/gittisak-go/gts-b
+- **GitHub Pages**: ⚠️ ต้องตั้งค่า Static Export
+- **Vercel**: ⚠️ ยังไม่ได้ Deploy
+
+---
+
+## 🔒 Security & Privacy
+
+- **Local AI**: ทำงานใน Browser ผ่าน WebGPU → **ข้อมูลไม่ออกจากเครื่อง**
+- **Cloud AI**: ส่งข้อความไปยัง Google/OpenAI API (ตามที่ผู้ใช้เลือก)
+- **Authentication**: ใช้ Supabase Auth (OAuth รองรับ Google, LINE, Facebook, Twitter, TikTok)
+- **Legal Pages**: มี Privacy Policy และ Terms of Service สำหรับยื่นขออนุมัติ OAuth
+
+---
+
+## 📞 Contact
+
+- **GitHub**: https://github.com/gittisak-go/gts-b
+- **Email**: gittisak.go@gmail.com
+- **Website**: https://gittisak-go.github.io/gts-b
+
+---
+
+## 📄 License
+
+Private © 2025 Gittisak Wannakeeree
 
 Portfolio website สำหรับ **พ.ต.ต. กิจติศักดิ์ วรรณคีรี** หัวหน้านายปราบปรามเมืองเอก กองกำกับการ 1 บก.ปส.3  
 กองบัญชาการตำรวจปราบปรามยาเสพติด (บก.ปส.)
