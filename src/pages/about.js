@@ -69,7 +69,7 @@ const About = () => {
                     {/* หัวข้อข่าว */}
                     <div className="bg-primary/10 dark:bg-primaryDark/10 p-4 rounded-lg border-l-4 border-primary dark:border-primaryDark">
                       <p className="font-bold text-lg sm:text-base leading-relaxed">
-                        "ปส.ทลายแก๊ง กุนซือ เมืองสิงห์ ยึดยาไอซ์ 50 กก. ยาบ้า 6 หมื่นเม็ด อายัดทรัพย์กว่า 50 ล้านบาท"
+                        &quot;ปส.ทลายแก๊ง กุนซือ เมืองสิงห์ ยึดยาไอซ์ 50 กก. ยาบ้า 6 หมื่นเม็ด อายัดทรัพย์กว่า 50 ล้านบาท&quot;
                       </p>
                     </div>
 
